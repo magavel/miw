@@ -32,7 +32,16 @@ try{
 $pays=$_GET['pays'];
 
 if(isset($pays)){
-    echo $pays;
+
+    $infoPays = $bdd->prepare('select name, continent, governmentform, surfacearea
+from country
+where code=:pays');
+    $infoPays->execute( array('pays'=>$pays));
+    while ($row=$infoPays->fetch()){
+        echo '<h1>Pays choisi: '.$row['name'].'</h1>';
+        echo 'Continent: '.$row['continent'];
+    }
+
     $listeVilles = $bdd->prepare('select city.name as name
         from country as country
         inner join city as city on country.code = city.countrycode
@@ -40,12 +49,13 @@ where country.code=:pays
 order by city.population desc limit 0,10');
     $listeVilles->execute( array('pays'=>$pays));
     echo '<table>';
-    echo '<br>liste des villes<br>';
+    echo '<h2>liste des villes</h2>';
+
     while ($row=$listeVilles->fetch()){
 
         echo '<tr><td>'.$row['name'].'</td></tr>';
     }
-    echo '</table>';
+    echo '</table><br><br>';
 }
 
 
