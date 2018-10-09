@@ -27,14 +27,48 @@ try{
     die('Erreur : '.$e->getMessage());
 }
 
-$res = $bdd->query('SELECT p.name, p.population, v.name as ville
-FROM city v
-       inner join country p on v.countrycode = p.code');
-echo '<table>';
-while ($row = $res->fetch()) {
-    echo '<tr> <td>pays: '.$row['name'] .' population: '.$row['population'].$row['ville']. '<br />';
+
+
+$pays=$_GET['pays'];
+
+if(isset($pays)){
+    echo $pays;
+    $listeVilles = $bdd->prepare('select city.name as name
+        from country as country
+        inner join city as city on country.code = city.countrycode
+where country.code=:pays
+order by city.population desc limit 0,10');
+    $listeVilles->execute( array('pays'=>$pays));
+    echo '<table>';
+    echo '<br>liste des villes<br>';
+    while ($row=$listeVilles->fetch()){
+
+        echo '<tr><td>'.$row['name'].'</td></tr>';
+    }
+    echo '</table>';
 }
 
+
+
+
+
+
+
+$ordre = 'ASC';
+$req = $bdd ->prepare ('select country.code as codePays, country.name as name, country.population as population, count(city.name) as nbreVille 
+                from country as country 
+                inner join city as city on country.code = city.countrycode
+                group by country.code 
+                order by :ordre');
+
+$req ->bindValue('ordre', $ordre, PDO::PARAM_STR);
+$req ->execute(array('ordre'=>$ordre));
+
+echo '<table>';
+while ($row = $req->fetch()) {
+    echo '<tr> <td>pays: ';
+    echo '<a href="pays.php?pays='.$row['codePays'].'">'.$row['name'] .'</a></td><td>'.' population: '.$row['population'].' </td><td>Nbre de villes: '.$row['nbreVille'].'</td></tr>';
+}
 echo '</table>';
 
 
