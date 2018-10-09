@@ -14,7 +14,6 @@ Un lien sur le nom du pays enverra sur le détail du pays avec toutes les infos 
 
 */
 
-//test
 
 try{
     $bdd = new PDO(
