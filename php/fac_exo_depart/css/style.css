@@ -1,0 +1,54 @@
+.head{
+    background-color: blue;
+    height: 50px;
+    width: 100%;
+    margin: 0% auto;
+   
+}
+
+.formulaire{
+   
+    width: 30%;
+    height: 100%;
+}
+.clearFloat{
+    clear: both;
+}
+.bandeauGrafic{
+   
+    margin: 0% auto;
+    position:absolute;
+    top: 50px;
+    height: 288px;
+    width: 100%;
+    background-image:url( ../img/background.jpg);
+   
+}
+.corpText{
+    float: right;
+    position: absolute;
+    top: 338px;
+    right: 0px;
+}
+.formulaire{
+    background-color: bisque;
+}
+.textFooter{
+    background-color:grey;
+    margin 0% auto;
+}
+.contenuFooter {
+    width: 70%;
+    margin: 0% auto;
+}
+.logo{
+    background-color: blueviolet;
+}
+
+
+@media only screen and (max-device-width:480px) {
+    body {
+        background-color: black;
+        color: white
+    }
+}
