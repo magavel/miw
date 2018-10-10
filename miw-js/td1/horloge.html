@@ -6,12 +6,11 @@
     <title>Horloge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-<script> function exo() { 
+<script> function exo() {
     var str;
     var el;
     el=document.getElementById('el'); 
-    function actualiser() { 
-         console.log('actualiser');
+
     var now = new Date();
 
     var annee = now.getFullYear();
@@ -25,13 +24,13 @@ str="Nous sommes le " + jour + "/" + mois + "/" + annee + " et il est " + heure 
 
     //document.getElementById('el').textContent=str;
     document.write(str);
-}
+
 
         
 
-     actualiser();
-    setInterval(actualiser,1000);
+
 }
+    setInterval( exo.match(reg),1000);
     exo();</script>
 </head>
 <body>
