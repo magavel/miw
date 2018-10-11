@@ -1,7 +1,7 @@
 #ALGO 
 
 **EXERCICE 1**
-
+``
 Procédure permutation ([E-S] a, b : réel)
 	var temp:réel
 	début
@@ -9,7 +9,7 @@ Procédure permutation ([E-S] a, b : réel)
 		a← b
 		b<- a
 	fin
-
+```
 **EXERCICE 2**
 
 Procédure  tri ([E] ord : booléen [E-S] a,b,c : réel)
