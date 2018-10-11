@@ -11,7 +11,7 @@ Procédure permutation ([E-S] a, b : réel)
 	fin
 ```
 **EXERCICE 2**
-
+``
 Procédure  tri ([E] ord : booléen [E-S] a,b,c : réel)
 
 DÉBUT
@@ -34,7 +34,7 @@ DÉBUT
 	
 		FINSI	
 FIN
-
+```
 nota:
  
 pour trier beaucoup de valeur on peut mettre toutes ces valeurs ds un tableau t.
@@ -53,7 +53,7 @@ c’est la methode de tri par bulles.
 **EXERCICE 3**
 
 //sans fonction récursive
-
+````
 Fonction somme ([E] n : entier):entier
 
        variable n, res :entier
@@ -67,9 +67,9 @@ DEBUT
        
 FIN
 
-
+```
 //avec fonction récursive…
-
+```
 Fonction somme ([E] n : entier):entier
 
       
@@ -81,12 +81,12 @@ DEBUT
        
 FIN
 
-
+```
 
 
 
 //fonction factorielle
-
+```
 Fonction factorielle ([E] n : entier):entier
 	variable n: reel
 	
@@ -99,7 +99,7 @@ DEBUT
 
 FIN
 
-
+```
 nota
 un algo récursif peut s’appeler sui même.
 Exploration de répertoire et sous répertoire ds un disque.
@@ -109,7 +109,7 @@ Exploration de répertoire et sous répertoire ds un disque.
 
 
 
-
+```
 Procédure capitalise (E)c,t:reel; d:entier (S) nc:reel
  variable 
 
@@ -119,8 +119,6 @@ DEBUT
 		nc= nc x (1+t)
 	finpour
 FIN
-
-
 
 
 
@@ -134,10 +132,10 @@ debut
 		n++
 	finTq
 fin
-
+```
 **correction**
 
-
+``
 Procédure doubleCapital ([E] c,t:reel [S]n:entier) 
 	n=0
 	r=c
@@ -147,10 +145,10 @@ debut
 		n++
 	jusqu'a nc>=2c
 fin
-
+```
 
 **question 7**
-
+```
 fonction estPremier([E]n:entier):booleen
 var i : entier
 debut
@@ -163,9 +161,10 @@ debut
 	retourne vrai
 
 fin
-
+```
 **question 10**
-///pas d'homonyme
+///pas d'homonyme`
+``
 procedure rechercher ([E] t[]:tableau d'élèves, n:chaine [S]trouve:booléen, age: entier)
 i: reel
 trouve false
@@ -180,13 +179,14 @@ debut
 			t(i).age=age
 	finsi
 fin
-
+```
 *****************
 **question 11**
 *****************
 
 
-///si homonymie
+///si homonymie`
+``
 procedure rechercher ([E] t[]:tableau d'élèves, n:chaine [S]trouve:booléen, age: entier)
 
 j:entier
@@ -207,16 +207,17 @@ debut
 	
 	finpour
 fin
+```
+***correction
 
-//correction
-
+```
 debut
 	reoeter 
 		i = i+1
 
 fin
 
-
+```
 
 
 
@@ -226,7 +227,7 @@ fin
 
 
 //recherche dans un tableau trié par ordre croissant
-
+``
 procedure recherche([E]t[]:tableau d'élèves, n:chaine [S]trouvé:booléen, age:entier)
 
 var A:string
@@ -247,11 +248,12 @@ j=0
 		finsi
 fin
 
-
+```
 
 *****************
 **Question 13**
-****************
+****************`
+
 ```html
 precédure dichotomie([E] t[]: tableau d'élève, n:chaine, nb:entier [S] trouvé: booléen, age:entier)
 
