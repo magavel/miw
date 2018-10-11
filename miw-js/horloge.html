@@ -5,37 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Horloge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-<script> function exo() { 
-    var str;
-    var el;
-    el=document.getElementById('el'); 
-    function actualiser() { 
-         console.log('actualiser');
-    var now = new Date();
 
-    var annee = now.getFullYear();
-    var mois = ('0' + now.getMonth() + 1).slice(-2);
-    var jour = ('0' + now.getDate()).slice(-2);
-    var heure = ('0' + now.getHours()).slice(-2);
-    var minute = ('0' + now.getMinutes()).slice(-2);
-    var seconde = ('0' + now.getSeconds()).slice(-2);
+    <script> function exo() {
+        var str;
+        var el;
+        el=document.getElementById('el');
+        function actualiser() {
+            console.log('actualiser');
+            function  chrono(){
 
-str="Nous sommes le " + jour + "/" + mois + "/" + annee + " et il est " + heure + " heure " + minute + " minutes " + seconde + " secondes";
+                var now = new Date();
 
-    //document.getElementById('el').textContent=str;
-    document.write(str);
-}
+                var annee = now.getFullYear();
+                var mois = ('0' + now.getMonth() + 1).slice(-2);
+                var jour = ('0' + now.getDate()).slice(-2);
+                var heure = ('0' + now.getHours()).slice(-2);
+                var minute = ('0' + now.getMinutes()).slice(-2);
+                var seconde = ('0' + now.getSeconds()).slice(-2);
 
-        
+                str="Nous sommes le " + jour + "/" + mois + "/" + annee + " et il est " + heure + " heure " + minute + " minutes " + seconde + " secondes";
+                return str
 
-     actualiser();
-    setInterval(actualiser,1000);
-}
+            }
+
+            document.write(chrono());
+
+        setInterval(chrono,1000);
+        }
+
+
+
+        actualiser();
+    }
     exo();</script>
 </head>
 <body>
-    <div id="el"></div>
-    
+<div id="el"></div>
+
 </body>
 </html>

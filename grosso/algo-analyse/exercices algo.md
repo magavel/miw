@@ -252,7 +252,7 @@ fin
 *****************
 **Question 13**
 ****************
-
+```html
 precédure dichotomie([E] t[]: tableau d'élève, n:chaine, nb:entier [S] trouvé: booléen, age:entier)
 
 var
@@ -274,11 +274,11 @@ debut
 
 fin
 
-
+```
 ********************
 **Question 14**
 ********************
-
+```
 procedure insere([E] nom: chaine, age:entier [E,S] t[] :tableau d'élève, nb :entier)
 
 var
@@ -302,8 +302,27 @@ debut
 
 fin
 
+```
 
+***************************************
+**Faire procédure sur les pointeurs rechercher un nom et le supprimer**
+*************************
 
+```
+Procedure ([E]nom : chaine [ES]debut)
+var s:pointeur sur Tpersonne
+
+Debut
+    s <- debut
+    Tantque s<> NIL et que S-> nom <> nom
+        s<- s -> Psuivant
+    FinTq
+    s->nom=nom
+    psuivant-1 = psuivant
+    desallouer psuivant
+fin
+
+```
 
 
 
