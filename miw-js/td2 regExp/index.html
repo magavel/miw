@@ -2,11 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="regExp.js"></script>
+    <title>Fonction regexp</title>
+
+
+
+
 </head>
 <body>
+AVel FERON
+    <p><input type="button" style="width:130px"onclick="exo13()" value="Exo 13"></p>
+    <p><input type="button" style="width:130px"onclick="exo14()" value="Exo 14"></p>
 
 </body>
+
+
+
+<script>
+
+    var tabemail=[
+        'leo@orange.fr',
+        'bernard@hotmail.fr',
+        'kirk@gmail.fr',
+        'henry@orange.fr',
+        'jade@orange.fr'
+    ];
+function exo(){
+
+    demande = prompt('la compagnie', 'orange');
+    reg=new RegExp('[a-z0-9.-_]+@'+demande+'[.](fr|com)','gi');
+    // avec variable obligé d'utiliser cette forme
+    var text=tabemail.toString();
+
+    console.log( text.match(reg).toString());
+    console.log( text.match(reg));// on peut uitliser sans toString. Evite de planter avec un tableau null
+}
+
+
+
+
+    function exo13() {
+    //a
+        var demande = prompt(' saisir un nmr de secu social du type: ', '1  33 12  29  123  436  /  24');
+        //var demande='1321229123436/24 et 1321229123436/24 hdj skdjh 1321229123436/24 jhdsj 1321229123436/24';
+        var resultat=0;
+        var numeroMasque=null;
+        reg = /^[1-2][\s]*[0-99]{2}[\s]*[01-12]{2}[\s]*[01-99]{2}[\s]*[000-999]{3}[\s]*[000-999]{3}[\s]*[/][\s]*[00-99]{2}$/g;
+
+        resultat=(reg.test(demande))?demande=demande.replace(reg, "* ** ** ** *** *** /***"):0;
+        console.log(demande);
+
+        var t=demande.match(reg);
+        console.log(t);
+
+        //b
+
+
+
+
+
+
+    }
+ function exo14(){
+    var t=[45,48,89,78];
+    var v=[110,128,129,178];
+    var z;
+    var val=prompt('Saisir un nbre: ', 23);
+    var val2=prompt('Saisir un 2eme nbre: ', 99);
+    t.push(val);
+    t.unshift(val2);
+    z=t.concat(v);
+    console.log(t.join("-"));
+     console.log(z);
+     console.log('on spprime; ' +z.slice(2,z.length-2).join("/"))
+
+ }
+
+
+
+
+</script>
 </html>
 
