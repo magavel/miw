@@ -27,8 +27,8 @@ try{
 }
 
 
-
-$pays=$_GET['pays'];
+if(!empty($_GET['pays']))
+   $pays=$_GET['pays'];
 
 if(isset($pays)){
 
@@ -37,73 +37,131 @@ from country
 where code=:pays');
     $infoPays->execute( array('pays'=>$pays));
     while ($row=$infoPays->fetch()){
-        echo '<h1>Pays choisi: '.$row['name'].'</h1>';
-        echo '<p>Continent: '.$row['continent'].'</p>';
-        echo '<p>Gouvernement: '.$row['governmentform'].'</p>';
-        echo '<p>Surface du pays: '.$row['surfacearea'].'</p>';
-
+        echo '  <h1>Pays choisi: '.$row['name'].'</h1>
+                <h2>Infos de base</h2>
+                <p>Continent: '.$row['continent'].'</p>
+                <p>Gouvernement: '.$row['governmentform'].'</p>
+                <p>Surface du pays: '.$row['surfacearea'].'</p>';
     }
 
-    $listeVilles = $bdd->prepare('select city.name as name
+    $listeVilles = $bdd->prepare('select city.name as nameCity
         from country as country
         inner join city as city on country.code = city.countrycode
 where country.code=:pays
 order by city.population desc limit 0,10');
     $listeVilles->execute( array('pays'=>$pays));
+
+
+
+
+
     echo '<table>';
     echo '<h2>liste des villes</h2>';
 
     while ($row=$listeVilles->fetch()){
 
-        echo '<tr><td>'.$row['name'].'</td></tr>';
+        echo '<tr><td>'.$row['nameCity'].'</td></tr>';
     }
     echo '</table><br><br>';
+    $listeVilles->closeCursor();
 }
+
+
+
+    echo '<h1>Liste des pays</h1><table>';
+
+    if(empty($_GET["tri_name"]) || $_GET["tri_name"]=="DESC")
+        $tri_name="ASC";
+    else
+        $tri_name="DESC";
+
+    if(empty($_GET["tri_pop"]) || $_GET["tri_pop"]=="DESC")
+        $tri_pop="ASC";
+    else
+        $tri_pop="DESC";
+
+    if(empty($_GET["tri_ville"]) || $_GET["tri_ville"]=="DESC")
+        $tri_ville="ASC";
+    else
+        $tri_ville="DESC";
+
+
+
 
 ?>
 
+    <thead>
+    <tr>
+        <th><a href="?tri_name=<?php echo $tri_name;?>">Name</a></th>
+        <th><a href="?tri_pop=<?php echo $tri_pop;?>">Population</a></th>
+        <th><a href="?tri_ville=<?php echo $tri_ville;?>">Nb Villes</a></th>
+    </tr>
+    </thead>
 
-<form method="post" action="pays.php">
-    <input type='submit' name='ASC' value='Tri ascendant'/>
-    <input type='submit' name='DESC' value='Tri descendant'/>
-</form>
-
+    <tbody>
 <?php
-$trisAsc=$_POST['ASC'];
+
+
+$nbrePays = $bdd->prepare('select count(country.code) as nbrPays from country');
+$nbrePays->execute();
+
+while ($row = $nbrePays->fetch()){
+    $nbrPays=$row['nbrPays'];
+    var_dump($nbrPays);
+
+}
+
+
+
+
+if(!empty($_POST['ASC']))
+    $trisAsc=$_POST['ASC'];
 
 $requete='select country.code as codePays, country.name as name, country.population as population, count(city.name) as nbreVille
                 from country as country
                 inner join city as city on country.code = city.countrycode
-                group by country.code';
-$tri= ' country.name';
+                group by country.code
+                order by ';
 
-//$ordreTri=trier;
 
-if(isset($_POST['ASC'])&&!empty($_POST['ASC'])){
-    $requete.=' ORDER BY '.$tri;
+if(!empty($_GET["tri_name"])){
+    $requete.=' name '.$_GET["tri_name"];
+    $variableTri='tri_name='.$_GET["tri_name"];
+    }
+else if (!empty($_GET["tri_pop"])){
+    $requete.=' population '.$_GET["tri_pop"];
+    $variableTri='tri_pop='.$_GET["tri_pop"];
+    }
+else if (!empty($_GET["tri_ville"])){
+    $requete.=' nbreVille '.$_GET["tri_ville"];
+    $variableTri='tri_ville='.$_GET["tri_ville"];
+    }
 
-}if (isset($_POST['DESC'])&&!empty($_POST['DESC'])){
-    $requete.= ' ORDER by '.$tri.' DESC';
-}else{
-    $requete=$requete;
+if(isset($_GET['page'])){
+    var_dump($_GET['page']);
 }
+
+
 
 $req=$bdd->prepare($requete);
 
 $req ->execute();
 
-echo '<table>';
+
 while ($row = $req->fetch()) {
 
-    echo '<tr> <td>pays: ';
-    echo '<a href="pays.php?pays='.$row['codePays'].'">'.$row['name'] .'</a></td><td>'.' population: '.$row['population'].' </td><td>Nbre de villes: '.$row['nbreVille'].'</td></tr>';
+
+    echo '<tr> 
+                
+            <td>pays: <a href="pays.php?pays='.$row['codePays'].'&'.$variableTri.'">'.$row['name'] .'</a></td>
+            <td>'.' population: '.$row['population'].' </td>    
+        <td>Nbre de villes: '.$row['nbreVille'].'</td>
+        </tr>';
 }
-echo '</table>';
 
 
+?>
 
+</tbody>
 
-
-
-
-$res->closeCursor();
+<?php $req->closeCursor();?>
