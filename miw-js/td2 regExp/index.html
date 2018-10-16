@@ -10,6 +10,9 @@
 </head>
 <body>
 AVel FERON
+
+<p>Attention: les résultats sont dans la console.</p>
+
     <p><input type="button" style="width:130px"onclick="exo13()" value="Exo 13"></p>
     <p><input type="button" style="width:130px"onclick="exo14()" value="Exo 14"></p>
 
@@ -42,14 +45,15 @@ function exo(){
 
     function exo13() {
     //a
-        var demande = prompt(' saisir un nmr de secu social du type: ', '1  33 12  29  123  436  /  24');
-        //var demande='1321229123436/24 et 1321229123436/24 hdj skdjh 1321229123436/24 jhdsj 1321229123436/24';
+        var chaineText='1 32  12 29 123   436 / 24 et 1 32 12 29 123 436 / 24 hdj skdjh 1 32 12 29 123 436/24 jhdsj 1321229123436/24'
+        var demande = prompt(' saisir un nmr de secu social du type: ', chaineText);
+
         var resultat=0;
         var numeroMasque=null;
-        reg = /^[1-2][\s]*[0-99]{2}[\s]*[01-12]{2}[\s]*[01-99]{2}[\s]*[000-999]{3}[\s]*[000-999]{3}[\s]*[/][\s]*[00-99]{2}$/g;
-
-        resultat=(reg.test(demande))?demande=demande.replace(reg, "* ** ** ** *** *** /***"):0;
-        console.log(demande);
+        reg = /[1-2][\s]*[0-99]{2}[\s]*[01-12]{2}[\s]*[01-99]{2}[\s]*[000-999]{3}[\s]*[000-999]{3}[\s]*[/][\s]*[00-99]{2}/g;
+        var x;
+        resultat=(reg.test(demande))?x=demande.replace(reg, "* ** ** ** *** *** /***"):0;
+        console.log(x);
 
         var t=demande.match(reg);
         console.log(t);
@@ -72,7 +76,7 @@ function exo(){
     t.unshift(val2);
     z=t.concat(v);
     console.log(t.join("-"));
-     console.log(z);
+     console.log('Tableau concaténé: '+z);
      console.log('on spprime; ' +z.slice(2,z.length-2).join("/"))
 
  }
