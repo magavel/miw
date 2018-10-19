@@ -105,11 +105,11 @@ order by city.population desc limit 0,10');
 $nbrePays = $bdd->prepare('select count(country.code) as nbrPays from country');
 $nbrePays->execute();
 
-while ($row = $nbrePays->fetch()){
+$row = $nbrePays->fetch();
     $nbrPays=$row['nbrPays'];
     var_dump($nbrPays);
 
-}
+
 
 
 

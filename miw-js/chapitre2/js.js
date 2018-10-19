@@ -41,3 +41,27 @@ console.log(tri(f1,1,6))
 
 
 //
+
+function surfPerim(long, larg){
+    var r=new Object();
+    r.surf=long*larg;
+    r.peri=2*(long+larg);
+    return r;
+}
+
+t=surfPerim(2,2);
+console.log('fonct surfPerim: ',t.surf);
+
+//closures
+
+
+function essai(){
+    var y=3;
+    function test(x){
+        return x*y;
+    }
+    return test;
+}
+var f=essai();
+console.log('closure: ',f(4));
+
