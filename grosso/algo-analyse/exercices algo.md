@@ -68,7 +68,11 @@ DEBUT
 FIN
 
 ```
-//avec fonction récursive…
+***avec fonction récursive…***
+
+
+
+
 ```
 Fonction somme ([E] n : entier):entier
 
@@ -155,7 +159,9 @@ debut
 	si <=1 alors retourner faux finsi
 	i <- 2c
 	tantque i<= racineCarre(n)
-		si (n mod i = 0) reyourne faux finsi
+		si (n mod i = 0) 
+		    reyourne faux 
+		finsi
 		i <- i +1
 	finTq
 	retourne vrai
